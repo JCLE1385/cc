@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Card</title>
+    <style>
+        body {
+            margin: 0;
+            background: #41739e;
+            font-family: Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 300px;
+            height: auto;
+            aspect-ratio: 1;
+            position: relative;
+            perspective: 1400px;
+            transition: all 1s;
+            left: 0;
+        }
+
+        .left-card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            transition: transform 1s;
+            transform-style: preserve-3d;
+            transform-origin: 0 0;
+        }
+
+        .left-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .left-card .card-front,
+        .left-card .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+        }
+
+        .left-card .card-back {
+            background: #bb0000;
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left-card .card-back img {
+            width: 250px;
+            height: 304px;
+        }
+
+        .card.open .left-card {
+            transform: rotateY(-180deg);
+        }
+        .card.open{
+            left: 150px;
+        }
+
+        .right-card {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to left, rgb(0 0 0 / 0%), rgb(4 1 1 / 47%)), url(images/letter.jpeg) no-repeat center center;
+            background-size: cover;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            color: #444;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .right-card h2 {
+            color: aliceblue;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .right-card p {
+            font-size: 0.6rem;
+            color: #ffe4e1;
+            text-align: justify;
+            margin: 0;
+        }
+
+        .snow {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translate(-50%, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, 100vh) scale(0.5);
+                opacity: 0.5;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                width: 95%;
+                max-width: 250px;
+            }
+
+            .right-card h2 {
+                font-size: 0.9rem;
+            }
+
+            .right-card p {
+                font-size: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="left-card">
+            <div class="card-front">
+                <img src="images/cover.jpg" alt="Christmas card cover">
+            </div>
+            <div class="card-back">
+                <div class="card-image">
+                    <img src="images/collage.jpg" alt="Card Back Image">
+                </div>
+            </div>
+        </div>
+
+        <div class="right-card">
+            <h2>Merry Christmas and Happy Anniversary Padaba🥰🥺</h2>
+            <p>Happy 4th year anniversary, Ashyq🥰In four years of our relationship, four years full of love😻, happiness😸, sadness😿, madness😾 and other emotions that we felt in this relationship. I'm so thankful and grateful that you came into my life, padaba🥺😚🥰, and despite the challenges we face, we're still here fighting for each other's success and for our dreams and goals. I pray, wish, and manifest this relationship won't end, padaba🥺. I want to be with you until we reach our dreams and goals in life and build a happy and contented family, Ashyq🥹🫶🏼. Again, happy 4th anniversary, padaba ko🥰💖. I love you always, Ashley Balingit🫶🏼😚💖. Mwuaahhh!<br><br>
+                Your Man,<br>
+                Extremadura, Jhon Carl🫶🏼🥹
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snow');
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnowflake, 100);
+
+        const card = document.querySelector('.card');
+
+        card.addEventListener('click', function () {
+            card.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
